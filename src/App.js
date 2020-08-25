@@ -1,24 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useCallback, useState} from 'react';
 import './App.css';
+import Theremin from './components/Theremin';
 
 function App() {
+    const [started, setStarted] = useState(false);
+
+    const onClick = useCallback(() => {
+        setStarted(true);
+    }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <h2 className="App__title">JS Theremin</h2>
+        {started
+            ? <Theremin/>
+            : <button className="App__button" onClick={onClick}>Start</button>
+        }
     </div>
   );
 }
